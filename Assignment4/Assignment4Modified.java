@@ -49,6 +49,8 @@ public class Assignment4Modified {
  		s = " " + s;
  		char[] array = s.toCharArray();
  		int index = s.length();
+ 		// change to StringBuilder str = new StringBuilder();
+ 		// simple program no need to use StringBuffer.
  		StringBuffer str = new StringBuffer("");
  		
  		for (int i = s.length() - 1; i >= 0; i--) {
@@ -109,6 +111,7 @@ public class Assignment4Modified {
 	}
 	
 	public String[] printWordsMoreThan3Letters(String s) {
+		// change to List<String> al = new ArrayList<>();
 		ArrayList<String> al = new ArrayList<String>();
 		int count = 0;
 		int start = 0;
@@ -136,6 +139,7 @@ public class Assignment4Modified {
 		int i = randomGenerator.nextInt(100) + 1;
 		System.out.println("Please guess a number between 1 and 100 - You have 5 chances to guess");
 		int k;
+		// global static variable maybe better when you use all capital letters for a parameter.
 		int MAX_TRIES = 5;
 		Scanner scanner = new Scanner(System.in);
 		for (k = 0; k < MAX_TRIES; k++) {

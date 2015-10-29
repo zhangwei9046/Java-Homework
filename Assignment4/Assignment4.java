@@ -16,10 +16,11 @@ public class Assignment4 {
 				count = 0;
 				s = "";
 			}
+			if (count > 1 && i == array.length - 1) {
+				al.add(new ZeroIndex(s, array.length - count));
+			}
 		}
-		if (count > 1) {
-			al.add(new ZeroIndex(s, array.length - count));
-		}
+		
 		return al.toArray(new ZeroIndex[0]);
 	}
 	
@@ -43,6 +44,23 @@ public class Assignment4 {
 		str = s.substring(start + 1, s.length()) + str;
 		return str;
 	}
+ 	
+ 	public String reversesSentenceAdvanced(String s) {
+ 		s = " " + s;
+ 		char[] array = s.toCharArray();
+ 		int index = s.length();
+ 		StringBuffer str = new StringBuffer("");
+ 		
+ 		for (int i = s.length() - 1; i >= 0; i--) {
+ 			if (array[i] == ' ' || i == 0) {
+ 				for (int j = i; j < index; j++) {
+ 					str.append(array[j]);
+ 				}
+ 				index = i;
+ 			}
+ 		}
+ 		return str.toString().substring(1);
+ 	}
 	
 	public void printNumberPyramid(int row) {
 		int count = 1;
@@ -118,8 +136,9 @@ public class Assignment4 {
 		int i = randomGenerator.nextInt(100) + 1;
 		System.out.println("Please guess a number between 1 and 100 - You have 5 chances to guess");
 		int k;
-		for (k = 0; k < 5; k++) {
-			Scanner scanner = new Scanner(System.in);
+		int MAX_TRIES = 5;
+		Scanner scanner = new Scanner(System.in);
+		for (k = 0; k < MAX_TRIES; k++) {
 			int guess_num = scanner.nextInt();
 			if (k == 4) {
 				if (guess_num == i) {
@@ -143,17 +162,35 @@ public class Assignment4 {
 	
 	public void cowsAndBulls() {
 		Random randomGenerator = new Random();
-		int num = randomGenerator.nextInt(9000) + 1000;
 		int[] digit = new int[4];
-		digit[0] = num/1000;
-		digit[1] = (num - digit[0] * 1000) / 100;
-		digit[2] = (num - digit[0]* 1000 - digit[1] * 100) / 10;
-		digit[3] = num - digit[0] * 1000 - digit[1] * 100 - digit[2] * 10;
+		digit[0] = randomGenerator.nextInt(10);
+		while(true) {
+			int k = randomGenerator.nextInt(10);
+			if (k != digit[0]) {
+				digit[1] = k;
+				break;
+			}
+		}
+		while(true) {
+			int k = randomGenerator.nextInt(10);
+			if (k != digit[0] && k != digit[1]) {
+				digit[2] = k;
+				break;
+			}
+		}
+		while(true) {
+			int k = randomGenerator.nextInt(10);
+			if (k != digit[0] && k != digit[1] && k != digit[2]) {
+				digit[3] = k;
+				break;
+			}
+		}
+		
 		System.out.println("Please enter a 4 digit number");
+		Scanner scanner = new Scanner(System.in);
 		
 		while (true) {
 			System.out.print("Input: ");
-			Scanner scanner = new Scanner(System.in);
 			String s = scanner.next();
 			if (s.length() == 4) {
 				int cow = 0;
@@ -165,9 +202,10 @@ public class Assignment4 {
 				for (int i = 0; i < 4; i++) {
 					for (int j = 0; j < 4; j++) {
 						if (i == j && guess[i] == digit[j]) {
-							cow++;
-						} else if (guess[i] == digit[j]) {
 							bull++;
+							continue;
+						} else if (guess[i] == digit[j]) {
+							cow++;
 						}
 					}
 				}
@@ -187,9 +225,10 @@ public class Assignment4 {
 	}
 	public static void main(String[] args) {
 		Assignment4 a = new Assignment4();
-		a.guessNumber();
-//		a.cowsAndBulls();
-		
+//		a.guessNumber();
+		a.cowsAndBulls();
+//		a.reversesSentenceAdvanced("I love the object oriented program course in NEU");
+//		System.out.println(a.reversesSentenceAdvanced("I love the object oriented program course in NEU"));
 	}
 	
 	

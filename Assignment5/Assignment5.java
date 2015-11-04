@@ -87,17 +87,6 @@ public class Assignment5 {
 		}
 		return true;
 	}
-	
-	
-	
-	public static void main(String[] args) throws Exception {
-		Person p = new Person("Ying", "Zhang");
-		System.out.println(p.toString());
-		MyStack ms = new MyStack();
-		ms.push(1);
-		ms.push(2);
-		System.out.println(ms.top());
-	}
 }
 
 class MyStack {                          //No.4

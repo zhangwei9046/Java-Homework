@@ -89,6 +89,7 @@ public class Assignment5 {
 	}
 }
 
+// use two queues, time complexity is not good.
 class MyStack {                          //No.4
 	Queue<Integer> queue = new LinkedList<Integer>();
 	
